@@ -3,183 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmed Nouman & Mishaal Butt</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<title>Ahmed Nouman & Mishaal Butt | You're Invited</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ivory: #faf6f0;
-  --gold: #c9a96e;
-  --deep-gold: #a67c52;
-  --dark: #3a2e24;
-  --soft: #f5efe6;
+  --cream: #faf6f1;
+  --gold: #d4af37;
+  --dark: #3e2f23;
+  --accent: #b8860b;
+  --soft-gold: #e8d5b5;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
-  background: #1a1410;
+  background: var(--cream);
   color: var(--dark);
   font-family: 'Cormorant Garamond', serif;
-  min-height: 100vh;
   overflow-x: hidden;
+  min-height: 100vh;
 }
-#seal-screen {
-  position: fixed; inset: 0;
-  background: linear-gradient(160deg, #2c241c, #1a1410);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  z-index: 1000; transition: opacity 1s ease;
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1a120b 0%, #3e2f23 100%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 1.2s ease, visibility 1.2s;
 }
-#seal-screen.hide { opacity: 0; pointer-events: none; }
-.wax-seal {
-  width: 130px; height: 130px;
-  background: radial-gradient(circle at 35% 30%, #f0d78c, #c9a96e 50%, #8b6914);
+#overlay.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+.seal {
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle at 30% 30%, #f4e4bc, #d4af37 40%, #8b6914);
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 50px rgba(201,169,110,0.4), inset 0 2px 8px rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(212,175,55,0.5), inset 0 0 20px rgba(255,255,255,0.3);
   cursor: pointer;
+  animation: pulse 2s infinite;
   font-family: 'Great Vibes', cursive;
-  font-size: 2.4rem;
-  color: #3a2e24;
-  animation: glow 2.5s ease-in-out infinite;
+  font-size: 2.2rem;
+  color: #3e2f23;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
 }
-@keyframes glow {
-  0%,100% { box-shadow: 0 0 40px rgba(201,169,110,0.35); transform: scale(1); }
-  50% { box-shadow: 0 0 60px rgba(201,169,110,0.6); transform: scale(1.04); }
-}
-.tap-hint { margin-top: 22px; color: #d4c4a8; letter-spacing: 4px; font-size: 0.85rem; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+.seal-text { font-size: 0.9rem; margin-top: 20px; color: #e8d5b5; letter-spacing: 3px; }
+#main { opacity:0; transition: opacity 1.5s ease 0.3s; }
+#main.show { opacity:1; }
 
-#content { opacity: 0; transition: opacity 1.2s ease 0.4s; }
-#content.show { opacity: 1; }
-
-.invite-frame {
-  max-width: 420px;
-  margin: 30px auto;
-  background: linear-gradient(180deg, #fffdf9, #f8f3ea);
-  border-radius: 8px;
-  padding: 50px 30px 40px;
+header {
+  text-align: center;
+  padding: 80px 20px 40px;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-  overflow: hidden;
+  background: linear-gradient(to bottom, #fff9f2, var(--cream));
 }
-.invite-frame::before {
-  content: '';
-  position: absolute; inset: 12px;
-  border: 1px solid rgba(201,169,110,0.35);
-  border-radius: 4px;
-  pointer-events: none;
-}
-.seal-top {
-  width: 90px; height: 90px;
-  margin: -20px auto 20px;
-  background: radial-gradient(circle at 35% 30%, #f0d78c, #c9a96e 55%, #8b6914);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Great Vibes', cursive;
-  font-size: 1.8rem;
-  color: #3a2e24;
-  box-shadow: 0 6px 20px rgba(139,105,20,0.3);
-  position: relative;
-  z-index: 2;
-}
+.blessing { font-size:1.15rem; letter-spacing:3px; color:var(--accent); margin-bottom:15px; }
 .names {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.4rem;
-  text-align: center;
-  color: var(--dark);
-  line-height: 1.15;
-  font-weight: 500;
-}
-.with {
   font-family: 'Great Vibes', cursive;
-  font-size: 1.6rem;
-  text-align: center;
-  color: var(--deep-gold);
-  margin: 4px 0;
+  font-size: 4.2rem;
+  line-height: 1;
+  color: var(--dark);
 }
-.sub {
-  text-align: center;
-  font-size: 0.95rem;
-  letter-spacing: 2px;
-  color: var(--deep-gold);
-  margin: 18px 0 10px;
-  text-transform: uppercase;
+.with { font-style: italic; font-size: 1.6rem; color: var(--gold); margin: 8px 0; }
+.scratch-wrap {
+  margin: 30px auto;
+  width: 320px;
+  height: 150px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  cursor: pointer;
 }
+#scratchCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: crosshair;
+}
+.scratch-content {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #fff, #f8f1e3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+.scratch-content h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+.scratch-hint { margin-top: 8px; font-size: 0.8rem; color: #888; }
+
 .countdown {
-  display: flex; justify-content: center; gap: 10px;
-  margin: 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 30px 0 10px;
+  flex-wrap: wrap;
 }
 .cbox {
-  background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(201,169,110,0.3);
-  min-width: 62px;
-  padding: 8px 6px;
-  border-radius: 6px;
-  text-align: center;
+  background: white;
+  border: 1px solid var(--soft-gold);
+  min-width: 68px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(212,175,55,0.15);
 }
-.cbox span { display: block; font-size: 1.4rem; font-weight: 600; color: var(--deep-gold); }
-.cbox small { font-size: 0.65rem; letter-spacing: 1px; }
+.cbox span { display:block; font-size: 1.6rem; font-weight:600; color:var(--accent); }
+.cbox small { font-size:0.65rem; letter-spacing:1px; text-transform:uppercase; }
 
-.event-section {
-  max-width: 420px;
-  margin: 20px auto;
-  background: #fffdf9;
-  border-radius: 8px;
-  padding: 28px 22px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  position: relative;
+.events { max-width: 860px; margin: 30px auto; padding: 0 16px; }
+.event {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 22px;
+  margin: 25px 0;
+  box-shadow: 0 12px 40px rgba(62,47,35,0.08);
+  border-top: 4px solid var(--gold);
 }
-.event-section h2 {
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 6px;
-}
-.hosts { text-align: center; font-style: italic; color: var(--deep-gold); font-size: 0.95rem; margin-bottom: 12px; }
-.date { text-align: center; font-size: 1.5rem; color: var(--gold); font-weight: 500; margin: 8px 0; }
-.times { display: flex; justify-content: space-around; margin: 12px 0; text-align: center; font-size: 0.95rem; }
-.venue { text-align: center; margin: 10px 0; }
+.event h2 { font-family:'Playfair Display',serif; font-size:1.9rem; text-align:center; margin-bottom:6px; }
+.hosts { text-align:center; font-style:italic; color:var(--accent); margin-bottom:14px; }
+.big-date { text-align:center; font-size:2.1rem; font-weight:600; color:var(--gold); margin:10px 0; }
+.times { display:flex; justify-content:space-around; margin:16px 0; text-align:center; }
+.venue { text-align:center; margin:12px 0; font-size:1.1rem; }
 .btn {
-  display: inline-block;
-  background: var(--dark);
-  color: #fff;
-  padding: 10px 22px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  margin: 6px;
+  display:inline-block;
+  background:var(--dark);
+  color:white;
+  padding:11px 24px;
+  border-radius:30px;
+  text-decoration:none;
+  margin:6px;
+  font-size:0.92rem;
+  transition:0.3s;
 }
+.btn:hover { background:var(--accent); }
+
 .contacts {
-  max-width: 420px;
-  margin: 30px auto;
-  background: #fffdf9;
-  padding: 25px 20px;
-  border-radius: 8px;
-  text-align: center;
+  max-width:660px;
+  margin:40px auto;
+  text-align:center;
+  background:rgba(255,255,255,0.65);
+  padding:28px 18px;
+  border-radius:14px;
 }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:12px; }
+@media(max-width:520px){ .grid{grid-template-columns:1fr;} .names{font-size:3.2rem;} }
 a[href^="tel"] { color: var(--dark); text-decoration: none; font-weight: 500; }
+
 #musicBtn {
-  position: fixed; bottom: 18px; right: 18px;
-  width: 48px; height: 48px; border-radius: 50%;
-  background: var(--gold); border: none; color: #fff;
-  font-size: 1.2rem; cursor: pointer; z-index: 50;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:var(--gold);
+  border:none;
+  color:white;
+  font-size:1.25rem;
+  cursor:pointer;
+  box-shadow:0 4px 18px rgba(0,0,0,0.25);
+  z-index:50;
 }
-footer { text-align: center; padding: 30px 15px; color: #a89880; font-size: 0.85rem; }
+.petal {
+  position: fixed;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #f8e1c8, #d4af37);
+  border-radius: 50% 0 50% 50%;
+  animation: fall linear infinite;
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 5;
+}
+@keyframes fall {
+  to { transform: translateY(105vh) rotate(360deg); }
+}
+footer { text-align:center; padding:35px 15px; color:#7a6a5a; font-size:0.9rem; }
 </style>
 </head>
 <body>
 
-<div id="seal-screen">
-  <div class="wax-seal" id="openSeal">A&M</div>
-  <div class="tap-hint">TAP TO OPEN</div>
+<div id="overlay">
+  <div class="seal" id="seal">A&M</div>
+  <div class="seal-text">TAP TO OPEN</div>
 </div>
 
-<div id="content">
-  <div class="invite-frame">
-    <div class="seal-top">A&M</div>
+<div id="main">
+  <header>
+    <div class="blessing">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
     <div class="names">Ahmed Nouman</div>
     <div class="with">with</div>
     <div class="names">Mishaal Butt</div>
-    <div class="sub">Together with their families</div>
-    <div class="sub" style="margin-top:4px;">invite you to their wedding</div>
+
+    <div class="scratch-wrap">
+      <div class="scratch-content">
+        <h3>You're Invited!</h3>
+        <p>Scratch to reveal</p>
+        <div class="scratch-hint">Use finger or mouse</div>
+      </div>
+      <canvas id="scratchCanvas"></canvas>
+    </div>
 
     <div class="countdown">
       <div class="cbox"><span id="d">00</span><small>Days</small></div>
@@ -187,40 +217,42 @@ footer { text-align: center; padding: 30px 15px; color: #a89880; font-size: 0.85
       <div class="cbox"><span id="m">00</span><small>Mins</small></div>
       <div class="cbox"><span id="s">00</span><small>Secs</small></div>
     </div>
-  </div>
+  </header>
 
-  <div class="event-section">
-    <h2>Barat Ceremony</h2>
-    <div class="hosts">Hosted by Mr. & Mrs. Abdul Hameed Butt</div>
-    <div class="date">Thursday<br>10 December 2026</div>
-    <div class="times">
-      <div><strong>Reception</strong><br>7:00 PM</div>
-      <div><strong>Dinner</strong><br>8:00 PM</div>
+  <section class="events">
+    <div class="event">
+      <h2>Barat Ceremony</h2>
+      <div class="hosts">Hosted by Mr. & Mrs. Abdul Hameed Butt</div>
+      <div class="big-date">Thursday<br>10 December 2026</div>
+      <div class="times">
+        <div><strong>Reception</strong><br>7:00 PM</div>
+        <div><strong>Dinner</strong><br>8:00 PM</div>
+      </div>
+      <div class="venue">Mansion Marquee<br>Misrial Road, Rawalpindi</div>
+      <div style="text-align:center">
+        <a class="btn" href="https://maps.google.com/?q=Mansion+Marquee+Misrial+Rd+Rawalpindi" target="_blank">Open in Maps</a>
+      </div>
     </div>
-    <div class="venue">Mansion Marquee<br>Misrial Road, Rawalpindi</div>
-    <div style="text-align:center;">
-      <a class="btn" href="https://maps.google.com/?q=Mansion+Marquee+Misrial+Rd+Rawalpindi" target="_blank">View Map</a>
-    </div>
-  </div>
 
-  <div class="event-section">
-    <h2>Walima Reception</h2>
-    <div class="hosts">Hosted by Mr. & Mrs. Sohail Ahmed</div>
-    <div class="date">Saturday<br>12 December 2026</div>
-    <div class="times">
-      <div><strong>Reception</strong><br>7:00 PM</div>
-      <div><strong>Dinner</strong><br>8:00 PM</div>
+    <div class="event">
+      <h2>Walima Reception</h2>
+      <div class="hosts">Hosted by Mr. & Mrs. Sohail Ahmed</div>
+      <div class="big-date">Saturday<br>12 December 2026</div>
+      <div class="times">
+        <div><strong>Reception</strong><br>7:00 PM</div>
+        <div><strong>Dinner</strong><br>8:00 PM</div>
+      </div>
+      <div class="venue">1969 Restaurant<br>Garden Ave, Shakarpairan, Islamabad</div>
+      <div style="text-align:center">
+        <a class="btn" href="https://maps.google.com/?q=1969+Restaurant+Garden+Ave+Shakarpairan+Islamabad" target="_blank">Open in Maps</a>
+      </div>
     </div>
-    <div class="venue">1969 Restaurant<br>Garden Ave, Shakarpairan, Islamabad</div>
-    <div style="text-align:center;">
-      <a class="btn" href="https://maps.google.com/?q=1969+Restaurant+Garden+Ave+Shakarpairan+Islamabad" target="_blank">View Map</a>
-    </div>
-  </div>
+  </section>
 
-  <div class="contacts">
-    <h2 style="font-family:'Playfair Display',serif; margin-bottom:8px;">Looking Forward</h2>
-    <p>R.S.V.P. — All Family Members</p>
-    <div style="margin-top:15px; display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+  <section class="contacts">
+    <h2 style="font-family:'Playfair Display',serif;">Looking Forward</h2>
+    <p style="margin:6px 0 12px;">R.S.V.P. — All Family Members</p>
+    <div class="grid">
       <div>
         <strong>Barat</strong><br>
         Khizar Hameed Butt<br><a href="tel:+923319813035">0331 9813035</a><br>
@@ -232,12 +264,15 @@ footer { text-align: center; padding: 30px 15px; color: #a89880; font-size: 0.85
         Shaista Sohail<br><a href="tel:+923376266269">0337 6266269</a>
       </div>
     </div>
-    <div style="margin-top:18px;">
-      <a class="btn" href="https://wa.me/923319813035?text=Assalamualaikum%20confirming%20attendance%20for%20Ahmed%20%26%20Mishaal%20wedding" target="_blank">WhatsApp RSVP</a>
+    <div style="margin-top:18px">
+      <a class="btn" href="https://wa.me/923319813035?text=Assalamualaikum%20I%20confirm%20attendance%20for%20Ahmed%20%26%20Mishaal%20wedding" target="_blank">WhatsApp RSVP</a>
     </div>
-  </div>
+  </section>
 
-  <footer>May Allah bless this union with love & barakah. Ameen.</footer>
+  <footer>
+    May Allah bless this union with love, happiness & barakah. Ameen.<br>
+    Ahmed Nouman & Mishaal Butt • December 2026
+  </footer>
 </div>
 
 <button id="musicBtn">♪</button>
@@ -246,30 +281,80 @@ footer { text-align: center; padding: 30px 15px; color: #a89880; font-size: 0.85
 </audio>
 
 <script>
-document.getElementById('openSeal').onclick = () => {
-  document.getElementById('seal-screen').classList.add('hide');
-  document.getElementById('content').classList.add('show');
+document.getElementById('seal').onclick = () => {
+  document.getElementById('overlay').classList.add('hidden');
+  document.getElementById('main').classList.add('show');
   tryPlay();
+  createPetals();
 };
+
 const bgm = document.getElementById('bgm');
-const btn = document.getElementById('musicBtn');
+const mbtn = document.getElementById('musicBtn');
 let playing = false;
 function tryPlay() {
-  bgm.play().then(() => { playing = true; btn.textContent = '❚❚'; }).catch(()=>{});
+  bgm.play().then(() => { playing = true; mbtn.textContent = '❚❚'; }).catch(()=>{});
 }
-btn.onclick = () => {
-  if (playing) { bgm.pause(); btn.textContent = '♪'; playing = false; }
-  else { bgm.play().then(() => { playing = true; btn.textContent = '❚❚'; }).catch(()=>{}); }
+mbtn.onclick = () => {
+  if (playing) { bgm.pause(); mbtn.textContent = '♪'; playing = false; }
+  else { bgm.play().then(()=>{ playing=true; mbtn.textContent='❚❚'; }).catch(()=>{}); }
 };
+
 const target = new Date('2026-12-10T19:00:00+05:00').getTime();
 setInterval(() => {
-  const d = target - Date.now();
-  if (d < 0) return;
-  document.getElementById('d').textContent = Math.floor(d/86400000);
-  document.getElementById('h').textContent = String(Math.floor((d%86400000)/3600000)).padStart(2,'0');
-  document.getElementById('m').textContent = String(Math.floor((d%3600000)/60000)).padStart(2,'0');
-  document.getElementById('s').textContent = String(Math.floor((d%60000)/1000)).padStart(2,'0');
+  const diff = target - Date.now();
+  if (diff < 0) return;
+  document.getElementById('d').textContent = Math.floor(diff/86400000);
+  document.getElementById('h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
 }, 1000);
+
+const canvas = document.getElementById('scratchCanvas');
+const ctx = canvas.getContext('2d');
+function initScratch() {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+  ctx.fillStyle = '#c9a87c';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = '#fff';
+  ctx.font = '16px Cormorant Garamond';
+  ctx.textAlign = 'center';
+  ctx.fillText('Scratch Here', canvas.width/2, canvas.height/2);
+}
+initScratch();
+window.addEventListener('resize', initScratch);
+
+let isDrawing = false;
+function scratch(e) {
+  if (!isDrawing) return;
+  const r = canvas.getBoundingClientRect();
+  const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+  const y = (e.touches ? e.touches[0].clientY : e.clientY) - r.top;
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath();
+  ctx.arc(x, y, 26, 0, Math.PI*2);
+  ctx.fill();
+}
+canvas.addEventListener('mousedown', () => isDrawing = true);
+canvas.addEventListener('mouseup', () => isDrawing = false);
+canvas.addEventListener('mouseleave', () => isDrawing = false);
+canvas.addEventListener('mousemove', scratch);
+canvas.addEventListener('touchstart', e => { isDrawing=true; e.preventDefault(); }, {passive:false});
+canvas.addEventListener('touchend', () => isDrawing=false);
+canvas.addEventListener('touchmove', e => { scratch(e); e.preventDefault(); }, {passive:false});
+
+function createPetals() {
+  for (let i=0; i<12; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = (7 + Math.random()*7) + 's';
+    p.style.animationDelay = Math.random()*4 + 's';
+    p.style.opacity = 0.35 + Math.random()*0.4;
+    document.body.appendChild(p);
+  }
+}
 </script>
 </body>
 </html>
